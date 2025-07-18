@@ -32,6 +32,7 @@ GRANT CREATE ON SCHEMA tiny_schema TO tiny_user;
 -- Optional: Allow full access on all objects within the schema
 ALTER DEFAULT PRIVILEGES IN SCHEMA tiny_schema
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO tiny_user;
+GRANT USAGE, SELECT, UPDATE ON ALL SEQUENCES IN SCHEMA tiny_schema TO tiny_user;
 
 -- 5. Create the table inside the schema
 CREATE TABLE tiny_schema.tiny_url (

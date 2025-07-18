@@ -4,6 +4,7 @@ import com.redashwood.tinyurl.dto.CreateTinyURLRequestTO;
 import com.redashwood.tinyurl.dto.TinyURLResponseTO;
 import com.redashwood.tinyurl.dto.UpdateOriginalURLRequestTO;
 import com.redashwood.tinyurl.exception.InvalidTinyURLException;
+import com.redashwood.tinyurl.logger.LogExecutionTime;
 import com.redashwood.tinyurl.service.CreateTinyURLService;
 import com.redashwood.tinyurl.service.DeleteTinyURLService;
 import com.redashwood.tinyurl.service.GetOriginalURLService;
@@ -37,6 +38,7 @@ public class TinyURLController {
         this.deleteTinyURLService = deleteTinyURLService;
     }
 
+    @LogExecutionTime
     @PostMapping(value = "/tiny/url", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE,
             headers = "Accept-Version=v1")
     public ResponseEntity<TinyURLResponseTO> createTinyURL(@Valid @RequestBody CreateTinyURLRequestTO createTinyURLRequestTO) {
@@ -45,6 +47,7 @@ public class TinyURLController {
         return new ResponseEntity<>(tinyURLResponseTO, HttpStatus.CREATED);
     }
 
+    @LogExecutionTime
     @PutMapping(value = "/tiny/url", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE,
             headers = "Accept-Version=v1")
     public ResponseEntity<TinyURLResponseTO> updateOriginalURL(@Valid @RequestBody UpdateOriginalURLRequestTO updateOriginalURLRequestTO) {
@@ -53,6 +56,7 @@ public class TinyURLController {
         return new ResponseEntity<>(tinyURLResponseTO, HttpStatus.OK);
     }
 
+    @LogExecutionTime
     @GetMapping(value = "/tiny/url/{tinyURL}", produces = MediaType.APPLICATION_JSON_VALUE,
             headers = "Accept-Version=v1")
     public ResponseEntity<TinyURLResponseTO> getOriginalURL(@PathVariable("tinyURL") String tinyURL) {
@@ -64,6 +68,7 @@ public class TinyURLController {
         return new ResponseEntity<>(tinyURLResponseTO, HttpStatus.OK);
     }
 
+    @LogExecutionTime
     @DeleteMapping(value = "/tiny/url/{tinyURL}", produces = MediaType.APPLICATION_JSON_VALUE,
             headers = "Accept-Version=v1")
     public ResponseEntity<TinyURLResponseTO> deleteTinyURL(@PathVariable("tinyURL") String tinyURL) {

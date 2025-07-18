@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.time.Instant;
 import java.time.OffsetDateTime;
-import java.time.temporal.ChronoUnit;
+import java.time.ZoneOffset;
 
 public class CreateTinyURLServiceImpl implements CreateTinyURLService {
 
@@ -34,7 +34,13 @@ public class CreateTinyURLServiceImpl implements CreateTinyURLService {
         tinyURLEntity.setOriginalUrl(createTinyURLRequestTO.originalURL());
         tinyURLEntity.setTinyUrl(tinyURLGenerator.generateNextTinyURL());
         tinyURLEntity.setActive(true);
-        tinyURLEntity.setExpirationDate(Instant.now().plus(6L, ChronoUnit.MONTHS));
+
+        Instant expirationDate = Instant.now()
+                .atZone(ZoneOffset.UTC)
+                .plusMonths(6L)
+                .toInstant();
+
+        tinyURLEntity.setExpirationDate(expirationDate);
         tinyURLEntity.setCreatedOn(OffsetDateTime.now());
         tinyURLRepository.save(tinyURLEntity);
 
