@@ -1,0 +1,107 @@
+package com.redashwood.tinyurl.controller;
+
+import com.redashwood.tinyurl.dto.CreateTinyURLRequestTO;
+import com.redashwood.tinyurl.dto.TinyURLResponseTO;
+import com.redashwood.tinyurl.dto.UpdateOriginalURLRequestTO;
+import com.redashwood.tinyurl.service.CreateTinyURLService;
+import com.redashwood.tinyurl.service.DeleteTinyURLService;
+import com.redashwood.tinyurl.service.GetOriginalURLService;
+import com.redashwood.tinyurl.service.UpdateOriginalURLService;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import java.time.Instant;
+
+@ExtendWith(MockitoExtension.class)
+class TinyURLControllerTest {
+
+    @InjectMocks
+    private TinyURLController tinyURLController;
+
+    @Mock
+    private CreateTinyURLService createTinyURLService;
+
+    @Mock
+    private UpdateOriginalURLService updateOriginalURLService;
+
+    @Mock
+    private GetOriginalURLService getOriginalURLService;
+
+    @Mock
+    private DeleteTinyURLService deleteTinyURLService;
+
+    @Test
+    void givenValidCreateTinyURLTO_whenCreateTinyURLCalled_thenReturnsCreatedTinyURLResponse() {
+        CreateTinyURLRequestTO createTinyURLRequestTO = new CreateTinyURLRequestTO("https://example.com");
+        TinyURLResponseTO tinyURLResponseTO = new TinyURLResponseTO("https://example.com", "seri2s2as",
+                true, Instant.now(), null);
+
+        Mockito.when(createTinyURLService.createTinyURL(createTinyURLRequestTO)).thenReturn(tinyURLResponseTO);
+
+        ResponseEntity<TinyURLResponseTO> responseEntity = tinyURLController.createTinyURL(createTinyURLRequestTO);
+
+        Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        Assertions.assertEquals(tinyURLResponseTO, responseEntity.getBody());
+
+        Mockito.verify(createTinyURLService, Mockito.times(1)).createTinyURL(createTinyURLRequestTO);
+    }
+
+    @Test
+    void givenValidUpdateOriginalURLTO_whenUpdateOriginalURLCalled_thenReturnsUpdatedTinyURLResponse() {
+
+        UpdateOriginalURLRequestTO updateOriginalURLTO = new UpdateOriginalURLRequestTO("https://example.com","seri2s2as");
+        TinyURLResponseTO tinyURLResponseTO = new TinyURLResponseTO("https://example.com", "seri2s2as",
+                true, Instant.now(), null);
+
+        Mockito.when(updateOriginalURLService.updateOriginalURL(updateOriginalURLTO)).thenReturn(tinyURLResponseTO);
+
+        ResponseEntity<TinyURLResponseTO> responseEntity = tinyURLController.updateOriginalURL(updateOriginalURLTO);
+
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertEquals(tinyURLResponseTO, responseEntity.getBody());
+
+        //verifies that a specific method was called exactly once on the mocked object updateOriginalURLService during the test.
+        Mockito.verify(updateOriginalURLService, Mockito.times(1)).updateOriginalURL(updateOriginalURLTO);
+
+    }
+
+    @Test
+    void givenValidTinyURL_whenGetOriginalURLCalled_thenReturnsOriginalTinyURLResponse() {
+        String tinyURL = "seri2s2as";
+        TinyURLResponseTO tinyURLResponseTO = new TinyURLResponseTO("https://example.com", "seri2s2as",
+                true, Instant.now(), null);
+
+        Mockito.when(getOriginalURLService.getOriginalURL(tinyURL)).thenReturn(tinyURLResponseTO);
+
+        ResponseEntity<TinyURLResponseTO> responseEntity = tinyURLController.getOriginalURL(tinyURL);
+
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertEquals(tinyURLResponseTO, responseEntity.getBody());
+
+        Mockito.verify(getOriginalURLService, Mockito.times(1)).getOriginalURL(tinyURL);
+    }
+
+    @Test
+    void givenValidTinyURL_whenDeleteTinyURLCalled_thenReturnsDeletedTinyURLResponse() {
+
+        String tinyURL = "seri2s2as";
+        TinyURLResponseTO tinyURLResponseTO = new TinyURLResponseTO("https://example.com", "seri2s2as",
+                false, Instant.now(), null);
+
+        Mockito.when(deleteTinyURLService.deleteTinyURL(tinyURL)).thenReturn(tinyURLResponseTO);
+
+        ResponseEntity<TinyURLResponseTO> responseEntity = tinyURLController.deleteTinyURL(tinyURL);
+
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Assertions.assertEquals(tinyURLResponseTO, responseEntity.getBody());
+
+        Mockito.verify(deleteTinyURLService, Mockito.times(1)).deleteTinyURL(tinyURL);
+    }
+}
