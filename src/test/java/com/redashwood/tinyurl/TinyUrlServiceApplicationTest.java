@@ -11,20 +11,16 @@
  *
  * Licensed under the Apache License Version 2.0. See LICENSE file for more details.
  */
-package com.redashwood.tinyurl.generator.impl;
+package com.redashwood.tinyurl;
 
-import com.redashwood.tinyurl.generator.TinyURLGenerator;
-import com.redashwood.tinyurl.utils.Base62Encoder;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.concurrent.ThreadLocalRandom;
+@SpringBootTest
+class TinyUrlServiceApplicationTest {
 
-public class DistributedTinyURLGenerator implements TinyURLGenerator {
-
-    @Override
-    public String generateNextTinyURL() {
-        long timestamp = System.currentTimeMillis();
-        int entropy = ThreadLocalRandom.current().nextInt(1000, 9999);
-        long uniqueId = Long.parseLong(timestamp + "" + entropy);
-        return Base62Encoder.encode(uniqueId);
+    @Test
+    void contextLoads() {
+        // Test context load on startup
     }
 }
