@@ -9,19 +9,10 @@
 # concepts such as encoding algorithms, database storage, and URL mapping.
 #
 # Licensed under the Apache License Version 2.0. See LICENSE file for more details.
-
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/tiny_db?currentSchema=tiny_schema
-    username: tiny_user
-    password: password
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: update  # or validate, create, create-drop depending on your needs
-    properties:
-      hibernate:
-        default_schema: tiny_schema
-    show-sql: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  application:
+    name: tiny-url
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://tinyconfiguser:password@localhost:8888
