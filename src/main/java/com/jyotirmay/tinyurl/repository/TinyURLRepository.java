@@ -14,19 +14,18 @@
  *
  *
  */
+package com.jyotirmay.tinyurl.repository;
 
-package com.jyotirmay.tinyurl.exception;
+import com.jyotirmay.tinyurl.entity.TinyURLEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-public class TinyURLNotFoundException extends RuntimeException{
+import java.util.Optional;
 
-    private final String errorCode;
+public interface TinyURLRepository extends JpaRepository<TinyURLEntity, Integer> {
 
-    public TinyURLNotFoundException(String errorCode, String errorMessage, Object... args){
-        super(String.format(errorMessage,args));
-        this.errorCode = errorCode;
-    }
+    Optional<TinyURLEntity> findByTinyUrlAndActive(String tinyURL, boolean active);
 
-    public String getErrorCode() {
-        return errorCode;
-    }
+    @Query("SELECT COALESCE(MAX(t.tinyUrlId), 0) FROM TinyURLEntity t")
+    long findMaxTinyUrlId();
 }
