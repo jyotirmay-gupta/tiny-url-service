@@ -17,6 +17,7 @@
 
 package com.jyotirmay.tinyurl.config;
 
+import com.jyotirmay.tinyurl.filter.HeaderVersionFilter;
 import com.jyotirmay.tinyurl.repository.TinyURLRepository;
 import com.jyotirmay.tinyurl.generator.TinyURLGenerator;
 import com.jyotirmay.tinyurl.generator.impl.DistributedTinyURLGenerator;
@@ -33,6 +34,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ApplicationConfig {
+
+    @Bean
+    HeaderVersionFilter registerTinyHeaderVersionFilter() {
+        return new HeaderVersionFilter();
+    }
 
     @Bean
     TinyURLGenerator configureTinyURLGenerator() {
