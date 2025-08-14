@@ -10,6 +10,7 @@
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-v3.5.3-brightgreen)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-21-brightgreen)](https://www.oracle.com/java/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14.5-brightgreen)](https://www.postgresql.org/)
+[![codecov](https://codecov.io/github/jyotirmay-gupta/tiny-url-service/graph/badge.svg?token=HFY86G033B)](https://codecov.io/github/jyotirmay-gupta/tiny-url-service)
 
 
 **Project:** Tiny URL  
