@@ -35,12 +35,13 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO tiny_user;
 GRANT USAGE, SELECT, UPDATE ON ALL SEQUENCES IN SCHEMA tiny_schema TO tiny_user;
 
 -- 5. Create the table inside the schema
-CREATE TABLE tiny_schema.tiny_url (
-                                      tiny_url_id SERIAL PRIMARY KEY,
-                                      original_url TEXT NOT NULL,
-                                      tiny_url VARCHAR(100) NOT NULL UNIQUE,
-                                      expiration_date TIMESTAMP WITH TIME ZONE,
-                                      active BOOLEAN NOT NULL,
-                                      created_on TIMESTAMP WITH TIME ZONE NOT NULL,
-                                      updated_on TIMESTAMP WITH TIME ZONE
+CREATE TABLE tiny_schema.tiny_url
+(
+    tiny_url_id     SERIAL PRIMARY KEY,
+    original_url    TEXT                     NOT NULL,
+    tiny_url        VARCHAR(100)             NOT NULL UNIQUE,
+    expiration_date TIMESTAMP WITH TIME ZONE,
+    active          BOOLEAN                  NOT NULL,
+    created_on      TIMESTAMP WITH TIME ZONE NOT NULL,
+    updated_on      TIMESTAMP WITH TIME ZONE
 );

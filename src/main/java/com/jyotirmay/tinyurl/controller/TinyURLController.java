@@ -58,7 +58,7 @@ public class TinyURLController {
     }
 
     @LogExecutionTime
-    @PostMapping(value = "/tiny/url", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(value = "/tinyUrls", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE,
             headers = "Accept-Version=v1")
     public ResponseEntity<TinyURLResponseTO> createTinyURL(@Valid @RequestBody CreateTinyURLRequestTO createTinyURLRequestTO) {
         TinyURLResponseTO tinyURLResponseTO = createTinyURLService.createTinyURL(createTinyURLRequestTO);
@@ -67,7 +67,7 @@ public class TinyURLController {
     }
 
     @LogExecutionTime
-    @PutMapping(value = "/tiny/url", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping(value = "/tinyUrls", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE,
             headers = "Accept-Version=v1")
     public ResponseEntity<TinyURLResponseTO> updateOriginalURL(@Valid @RequestBody UpdateOriginalURLRequestTO updateOriginalURLRequestTO) {
         TinyURLResponseTO tinyURLResponseTO = updateOriginalURLService.updateOriginalURL(updateOriginalURLRequestTO);
@@ -76,25 +76,25 @@ public class TinyURLController {
     }
 
     @LogExecutionTime
-    @GetMapping(value = "/tiny/url/{tinyURL}", produces = MediaType.APPLICATION_JSON_VALUE,
+    @GetMapping(value = "/tinyUrls/{tinyUrl}", produces = MediaType.APPLICATION_JSON_VALUE,
             headers = "Accept-Version=v1")
-    public ResponseEntity<TinyURLResponseTO> getOriginalURL(@PathVariable("tinyURL") String tinyURL) {
-        if (tinyURL == null || tinyURL.isBlank()) {
+    public ResponseEntity<TinyURLResponseTO> getOriginalURL(@PathVariable("tinyUrl") String tinyUrl) {
+        if (tinyUrl == null || tinyUrl.isBlank()) {
             throw new InvalidTinyURLException("ERR400", "Invalid Tiny URL in the request");
         }
-        TinyURLResponseTO tinyURLResponseTO = getOriginalURLService.getOriginalURL(tinyURL);
+        TinyURLResponseTO tinyURLResponseTO = getOriginalURLService.getOriginalURL(tinyUrl);
         LOGGER.info("Original URL fetched successfully for tiny URL: {} as {}", tinyURLResponseTO.tinyURL(), tinyURLResponseTO.originalURL());
         return new ResponseEntity<>(tinyURLResponseTO, HttpStatus.OK);
     }
 
     @LogExecutionTime
-    @DeleteMapping(value = "/tiny/url/{tinyURL}", produces = MediaType.APPLICATION_JSON_VALUE,
+    @DeleteMapping(value = "/tinyUrls/{tinyUrl}", produces = MediaType.APPLICATION_JSON_VALUE,
             headers = "Accept-Version=v1")
-    public ResponseEntity<TinyURLResponseTO> deleteTinyURL(@PathVariable("tinyURL") String tinyURL) {
-        if (tinyURL == null || tinyURL.isBlank()) {
+    public ResponseEntity<TinyURLResponseTO> deleteTinyURL(@PathVariable("tinyUrl") String tinyUrl) {
+        if (tinyUrl == null || tinyUrl.isBlank()) {
             throw new InvalidTinyURLException("ERR400", "Invalid Tiny URL in the request");
         }
-        TinyURLResponseTO tinyURLResponseTO = deleteTinyURLService.deleteTinyURL(tinyURL);
+        TinyURLResponseTO tinyURLResponseTO = deleteTinyURLService.deleteTinyURL(tinyUrl);
         LOGGER.info("Tiny URL deleted successfully for tiny URL: {}", tinyURLResponseTO.tinyURL());
         return new ResponseEntity<>(tinyURLResponseTO, HttpStatus.OK);
     }
