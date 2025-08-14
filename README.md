@@ -4,12 +4,7 @@
 
 [![Build Status](https://github.com/jyotirmay-gupta/tiny-url-service/actions/workflows/maven.yml/badge.svg)](https://github.com/jyotirmay-gupta/tiny-url-service/actions/workflows/maven.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/jyotirmay-gupta/tiny-url-service.svg)](https://github.com/jyotirmay-gupta/tiny-url-service/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/jyotirmay-gupta/tiny-url-service.svg)](https://github.com/jyotirmay-gupta/tiny-url-service/commits)
-[![Contributors](https://img.shields.io/github/contributors/jyotirmay-gupta/tiny-url-service.svg)](https://github.com/jyotirmay-gupta/tiny-url-service/graphs/contributors)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-v3.5.3-brightgreen)](https://spring.io/projects/spring-boot)
-[![Java](https://img.shields.io/badge/Java-21-brightgreen)](https://www.oracle.com/java/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14.5-brightgreen)](https://www.postgresql.org/)
 [![codecov](https://codecov.io/github/jyotirmay-gupta/tiny-url-service/graph/badge.svg?token=HFY86G033B)](https://codecov.io/github/jyotirmay-gupta/tiny-url-service)
 
 
