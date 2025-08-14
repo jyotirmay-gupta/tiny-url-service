@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/jyotirmay-gupta/tiny-url-service.svg)](https://github.com/jyotirmay-gupta/tiny-url-service/commits)
 [![codecov](https://codecov.io/github/jyotirmay-gupta/tiny-url-service/graph/badge.svg?token=HFY86G033B)](https://codecov.io/github/jyotirmay-gupta/tiny-url-service)
-
+[![CodeFactor](https://www.codefactor.io/repository/github/jyotirmay-gupta/tiny-url-service/badge)](https://www.codefactor.io/repository/github/jyotirmay-gupta/tiny-url-service)
 
 **Project:** Tiny URL  
 **Description:** This is a personal project by Jyotirmay Gupta that implements a simplified URL shortening service, similar in concept to services like bit.ly or tinyurl.com. It allows long URLs to be converted into compact, easy-to-share short URLs.
