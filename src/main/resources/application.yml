@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tiny_db?currentSchema=tiny_schema
+    username: tiny_user
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # or validate, create, create-drop depending on your needs
+    properties:
+      hibernate:
+        default_schema: tiny_schema
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
